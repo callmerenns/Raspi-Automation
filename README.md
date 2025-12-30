@@ -88,6 +88,7 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
    ├── playbooks/
    ├── group_vars/
    └── inventory/
+   ```
 
 ## Keterangan Struktur
     ansible.cfg
