@@ -91,54 +91,55 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
    ```
 
 ## Keterangan Struktur
-    ansible.cfg
 
-    File konfigurasi utama Ansible.
+   #### ansible.cfg
 
-    tasks/
+   - File konfigurasi utama Ansible.
 
-    Berisi task-task Ansible untuk mengeksekusi perintah ke Raspberry Pi.
+   #### tasks/
 
-    library/
+   - Berisi task-task Ansible untuk mengeksekusi perintah ke Raspberry Pi.
 
-    Berisi custom Ansible library/module untuk automation,
-    misalnya untuk memodifikasi file settings.yaml di Raspberry Pi.
+   #### library/
 
-    roles/collect_dataset/
+   - Berisi custom Ansible library/module untuk automation,
+     misalnya untuk memodifikasi file settings.yaml di Raspberry Pi.
 
-    Role Ansible untuk proses pengumpulan dataset, terdiri dari:
+   #### roles/collect_dataset/
 
-    tasks/ — task spesifik role
+   ** Role Ansible untuk proses pengumpulan dataset, terdiri dari: **
 
-    library/ — custom module untuk role
+   - tasks/ — task spesifik role
 
-    playbooks/
+   - library/ — custom module untuk role
 
-    Berisi playbook Ansible untuk mengelompokkan dan menjalankan automation.
+   #### playbooks/
 
-    group_vars/
+   - Berisi playbook Ansible untuk mengelompokkan dan menjalankan automation.
 
-    Berisi konfigurasi global, seperti:
+   #### group_vars/
 
-    Path folder di Raspberry Pi
+   ** Berisi konfigurasi global, seperti: **
 
-    Format zip
+   - Path folder di Raspberry Pi
 
-    Nama folder
+   - Format zip
 
-    Konfigurasi lainnya
+   - Nama folder
 
-    inventory/
+   - Konfigurasi lainnya
 
-    Berisi file hosts.ini untuk konfigurasi:
+   #### inventory/
 
-    Hostname Raspberry Pi
+   ** Berisi file hosts.ini untuk konfigurasi: **
 
-    Alamat IP
+   - Hostname Raspberry Pi
 
-    Jenis Raspberry Pi
+   - Alamat IP
 
-    Pengaturan SSH dan parameter lainnya
+   - Jenis Raspberry Pi
+
+   - Pengaturan SSH dan parameter lainnya
 
 ## 📝 Catatan
 
