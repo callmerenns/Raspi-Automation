@@ -1,0 +1,14 @@
+- hosts: raspberry
+  gather_facts: no
+  tasks:
+    - name: TASK 5 DIMULAI
+      debug:
+        msg: "TASK 5 — Reboot Program DIMULAI"
+
+    - include_role:
+        name: collect_dataset
+        tasks_from: reboot
+
+    - name: TASK 5 SELESAI
+      debug:
+        msg: "TASK 5 — Reboot Program SELESAI ✔"

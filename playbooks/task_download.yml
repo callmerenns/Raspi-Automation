@@ -1,0 +1,14 @@
+- hosts: raspberry
+  gather_facts: no
+  tasks:
+    - name: TASK 4 DIMULAI
+      debug:
+        msg: "TASK 4 — Download file DIMULAI"
+
+    - include_role:
+        name: collect_dataset
+        tasks_from: download
+
+    - name: TASK 4 SELESAI
+      debug:
+        msg: "TASK 4 — Download file SELESAI ✔"

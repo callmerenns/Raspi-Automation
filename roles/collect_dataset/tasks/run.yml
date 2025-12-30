@@ -1,0 +1,29 @@
+# Tentukan workspace dynamic berdasarkan group
+- name: Tentukan workspace path berdasarkan raspi group
+  set_fact:
+    workspace_path: >-
+      {{ workspace_paths.early 
+         if inventory_hostname in groups['early_raspis'] 
+         else workspace_paths.late 
+      }}
+
+# Log workspace
+- name: INFO workspace_path
+  debug:
+    var: workspace_path
+
+# 1. Jalankan adacap dengan makem run
+- name: Jalankan program (make run)
+  shell: |
+    cd {{ workspace_path }} && make run
+  async: 120      # kasih waktu max 1 jam untuk berjalan
+  poll: 0          # segera lanjut ke task berikutnya (program tetap jalan)
+
+- name: Generate timestamp
+  set_fact:
+    timestamp: "{{ lookup('pipe', 'date +%Y-%m-%d_%H-%M-%S') }}"
+    
+# Log program sudah berjalan
+- name: Info program berjalan
+  debug:
+    msg: "PROGRAM SEDANG BERJALAN - mulai input tutup botol - {{ timestamp }}"

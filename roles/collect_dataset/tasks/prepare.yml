@@ -1,0 +1,61 @@
+# 1. Stop program 
+- name: Kill main.py if running
+  shell: pkill -f "python main.py" || true
+  register: pkill_result
+  failed_when: false
+
+- name: Generate timestamp
+  set_fact:
+    timestamp: "{{ lookup('pipe', 'date +%Y-%m-%d_%H-%M-%S') }}"
+    
+# Log status program stop
+- name: INFO PROGRAM BERHENTI
+  debug:
+    msg: "Program dihentikan pada {{ timestamp }} (host={{ inventory_hostname }})"
+
+# Tentukan workspace dynamic berdasarkan group
+- name: Tentukan workspace path berdasarkan raspi group
+  set_fact:
+    workspace_path: >-
+      {{ workspace_paths.early 
+         if inventory_hostname in groups['early_raspis'] 
+         else workspace_paths.late 
+      }}
+
+# Log workspace
+- name: INFO workspace_path
+  debug:
+    var: workspace_path
+
+# 3. Hapus file frame.zip jika tersedia
+- name: Hapus frame.zip jika ada
+  file:
+    path: "{{ workspace_path }}/{{ zip_file }}"
+    state: absent
+
+# 4. Hapus semua isi di dalam folder frame
+- name: Hapus semua isi didalam folder frame
+  become: yes
+  shell: rm -rf ./* .[^.]*
+  args:
+    chdir: "{{ workspace_path }}/{{ frame_folder }}"
+
+# 5. Edit file setting.yaml
+- name: Edit settings.yaml
+  yaml_patch:
+    src: "{{ workspace_path }}/settings.yaml"
+    edits:
+      - op: replace
+        path: /settings/dataset_creation/is_dataset_creation
+        value: true
+
+      - op: replace
+        path: /settings/dataset_creation/color
+        value: "{{ capture_color}}"
+      - op: replace
+        path: /settings/puncher/is_use_puncher
+        value: false
+# Log edit file settings.yaml
+- name: INFO UPDATE FILE settings.yaml
+  debug:
+    msg: "settings.yaml berhasil diupdate ke mode dataset (color={{ capture_color }}) pada {{ timestamp }}"

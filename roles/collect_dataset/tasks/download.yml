@@ -1,0 +1,37 @@
+# Tentukan workspace dynamic berdasarkan group
+- name: Tentukan workspace path berdasarkan raspi group
+  set_fact:
+    workspace_path: >-
+      {{ workspace_paths.early 
+         if inventory_hostname in groups['early_raspis'] 
+         else workspace_paths.late 
+      }}
+
+# Log workspace
+- name: INFO workspace_path
+  debug:
+    var: workspace_path
+
+# 1. Pastikan folder tujuan download ada di local
+- name: Pastikan folder tujuan download ada di local
+  delegate_to: localhost
+  file:
+    path: "/home/adamata/Adamata/Downloads/{{ inventory_hostname }}"
+    state: directory
+    mode: "0755"
+
+- name: Tunggu sampai frame.zip selesai dibuat (tidak berubah ukurannya)
+  wait_for:
+    path: "{{ workspace_path }}/{{ zip_file }}"
+    timeout: 30
+
+# 2. Download file zip dari raspi
+- name: Download frame.zip via synchronize
+  synchronize:
+    mode: pull
+    src: "{{ workspace_path }}/frame.zip"
+    dest: "/home/adamata/Adamata/Downloads/{{ inventory_hostname }}/"
+    rsync_opts:
+      - "--ignore-errors"
+    ssh_args: "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null"
+  delegate_to: localhost

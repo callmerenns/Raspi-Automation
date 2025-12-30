@@ -1,0 +1,14 @@
+- hosts: raspberry
+  gather_facts: no
+  tasks:
+    - name: TASK 1 DIMULAI
+      debug:
+        msg: "TASK 1 — Prepare Workspace DIMULAI"
+
+    - include_role:
+        name: collect_dataset
+        tasks_from: prepare
+
+    - name: TASK 1 SELESAI
+      debug:
+        msg: "TASK 1 — Prepare Workspace SELESAI ✔"

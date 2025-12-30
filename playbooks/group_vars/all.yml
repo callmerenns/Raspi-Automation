@@ -1,0 +1,10 @@
+workspace_base: "/home"
+
+workspace_paths:
+  early: "{{ workspace_base }}/{{ inventory_hostname }}/adacap-refactor/workspace"
+  late: "{{ workspace_base }}/{{ inventory_hostname }}/adacap/workspace"
+
+frame_folder: "frame"
+zip_file: "frame.zip"
+
+capture_color: "White"

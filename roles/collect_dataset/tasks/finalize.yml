@@ -1,0 +1,59 @@
+# Tentukan workspace dynamic berdasarkan group
+- name: Tentukan workspace path berdasarkan raspi group
+  set_fact:
+    workspace_path: >-
+      {{ workspace_paths.early 
+         if inventory_hostname in groups['early_raspis'] 
+         else workspace_paths.late 
+      }}
+
+# Log workspace
+- name: INFO workspace_path
+  debug:
+    var: workspace_path
+
+# 1. Stop program raspi
+- name: Stop program setelah selesai collect dataset
+  shell: pkill -f "python main.py" || true
+  register: pkill_result
+  failed_when: false
+
+# 2. Ubah konfigurasi settings.yaml tampilan awal
+- name: Kembalikan settings dataset dan puncher
+  yaml_patch:
+    src: "{{ workspace_path }}/settings.yaml"
+    edits:
+      - op: replace
+        path: /settings/dataset_creation/is_dataset_creation
+        value: false
+
+      - op: replace
+        path: /settings/puncher/is_use_puncher
+        value: true
+
+- name: Generate timestamp
+  set_fact:
+    timestamp: "{{ lookup('pipe', 'date +%Y-%m-%d_%H-%M-%S') }}"
+
+# Log settings.yaml telah diubah kembali
+- debug:
+    msg: "Proses selesai pada {{ timestamp }} untuk {{ inventory_hostname }}"
+
+# 3. Cek isi folder frame 
+- name: Cek isi folder frame
+  shell: |
+    cd {{ workspace_path }}/frame && ls
+  register: frame_files
+  failed_when: false
+
+# 4. Tampilkan failed jika isi folder frame kosong
+- name: Jika kosong → tampilkan pesan gagal
+  debug:
+    msg: "GAGAL: Folder frame kosong!"
+  when: frame_files.stdout == ""
+
+# 5. zip folder frame
+- name: Zip folder frame jika ada isinya
+  shell: |
+    cd {{ workspace_path }} && zip -r frame.zip frame
+  when: frame_files.stdout != ""

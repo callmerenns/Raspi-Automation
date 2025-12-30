@@ -1,0 +1,14 @@
+- hosts: raspberry
+  gather_facts: no
+  tasks:
+    - name: TASK 3 DIMULAI
+      debug:
+        msg: "TASK 3 — Finalisasi DIMULAI"
+
+    - include_role:
+        name: collect_dataset
+        tasks_from: finalize
+
+    - name: TASK 3 SELESAI
+      debug:
+        msg: "TASK 3 — Finalisasi SELESAI ✔"

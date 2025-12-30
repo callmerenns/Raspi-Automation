@@ -1,0 +1,14 @@
+- hosts: raspberry
+  gather_facts: no
+  tasks:
+    - name: TASK 2 DIMULAI
+      debug:
+        msg: "TASK 2 — Jalankan Program DIMULAI"
+
+    - include_role:
+        name: collect_dataset
+        tasks_from: run
+
+    - name: TASK 2 SELESAI
+      debug:
+        msg: "TASK 2 — Jalankan Program SELESAI ✔"

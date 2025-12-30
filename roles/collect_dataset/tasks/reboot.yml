@@ -1,0 +1,17 @@
+# 1. Reboot raspi
+- name: Reboot Raspi
+  shell: sudo reboot now
+  async: 1
+  poll: 0
+  ignore_errors: yes     # supaya tidak muncul error unreachable
+
+# 2. Tunggu raspi hidup kembali
+- name: Tunggu Raspberry Pi hidup lagi
+  wait_for_connection:
+    delay: 10
+    timeout: 120
+
+# 3. Log sukses
+- name: Raspi berhasil reboot
+  debug:
+    msg: "Raspberry Pi {{ inventory_hostname }} berhasil reboot dan sudah online kembali."

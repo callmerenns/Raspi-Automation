@@ -1,0 +1,15 @@
+# Main entry point role
+- name: Prepare workspace
+  include_tasks: prepare.yaml
+
+- name: Run Raspberry pi for collect dataset
+  include_tasks: run.yml
+
+- name: Finalize dataset
+  include_tasks: finalize.yml
+
+- name: Download file zip to local storage computer
+  include_tasks: download.yml
+
+- name: Reboot Raspberry
+  include_tasks: reboot.yml

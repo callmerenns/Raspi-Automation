@@ -1,0 +1,6 @@
+- hosts: raspberry
+  gather_facts: no
+  vars:
+    timestamp: "{{ lookup('pipe', 'date \"+%Y-%m-%d %H:%M:%S\"') }}"
+  roles:
+    - collect_dataset
