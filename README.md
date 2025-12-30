@@ -1,26 +1,31 @@
-# Raspberry Pi Automation dengan Ansible
+# Raspberry Pi Automation with Ansible
 
-Repository ini berisi program **automation Raspberry Pi 5** menggunakan **Ansible**.  
-Automation dijalankan dari komputer lokal untuk mengelola dan mengeksekusi perintah ke beberapa Raspberry Pi melalui koneksi **SSH**.
+![Ansible](https://img.shields.io/badge/Ansible-Automation-red?logo=ansible)
+![Python](https://img.shields.io/badge/Python-3.x-blue?logo=python)
+![Raspberry Pi](https://img.shields.io/badge/Raspberry%20Pi-5-C51A4A?logo=raspberrypi)
 
----
-
-## Prasyarat
-
-Pastikan komputer lokal Anda sudah memenuhi persyaratan berikut:
-
-- Python 3
-- Ansible
-- Sistem operasi Linux (Ubuntu/Debian direkomendasikan)
-- Akses SSH ke Raspberry Pi (Local Network atau Tailscale)
+Repository ini berisi program **automation untuk Raspberry Pi 5** menggunakan **Ansible**.  
+Automation dijalankan dari **komputer lokal** untuk mengelola dan mengeksekusi perintah ke beberapa Raspberry Pi melalui koneksi **SSH**.
 
 ---
 
-## Cara Download & Instalasi
+## 📋 Prasyarat
 
-1. Pastikan **Ansible** dan **Python 3** sudah terinstall di komputer lokal.
+Pastikan komputer lokal Anda memenuhi persyaratan berikut:
 
-2. Tentukan atau buat folder kerja untuk menjalankan program automation.
+- **Python 3**
+- **Ansible**
+- Sistem operasi **Linux** (Ubuntu/Debian direkomendasikan)
+- Akses **SSH** ke Raspberry Pi  
+  (melalui Local Network atau **Tailscale**)
+
+---
+
+## 🚀 Cara Download & Instalasi
+
+1️⃣ Pastikan **Ansible** dan **Python 3** sudah terinstall di komputer lokal.
+
+2️⃣ Tentukan atau buat folder kerja untuk menjalankan program automation.
 
 3. Clone repository dari GitHub menggunakan **SSH**  
    (pastikan SSH key sudah dibuat dan didaftarkan ke akun GitHub).
