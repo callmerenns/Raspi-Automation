@@ -74,7 +74,9 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
    ```bash
    ansible-playbook -i inventory/hosts.ini playbooks/nama_playbook.yml
 
-## Struktur Folder 
+## 📁 Struktur Folder 
+   
+   ```text
    .
    ├── ansible.cfg
    ├── tasks/
@@ -137,6 +139,6 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
 
     Pengaturan SSH dan parameter lainnya
 
-## Catatan
+## 📝 Catatan
 
    Pastikan setiap Raspberry Pi dapat diakses melalui SSH dan terdaftar dengan benar di file inventory sebelum menjalankan playbook.
