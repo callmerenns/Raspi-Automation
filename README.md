@@ -74,45 +74,69 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
    ```bash
    ansible-playbook -i inventory/hosts.ini playbooks/nama_playbook.yml
 
-## Struktur Folder & Keterangan
-    ###ansible.cfg
+## Struktur Folder 
+   .
+   ├── ansible.cfg
+   ├── tasks/
+   ├── library/
+   ├── roles/
+   │   └── collect_dataset/
+   │       ├── tasks/
+   │       └── library/
+   ├── playbooks/
+   ├── group_vars/
+   └── inventory/
+
+## Keterangan Struktur
+    ansible.cfg
+
     File konfigurasi utama Ansible.
 
-    ###tasks/
+    tasks/
+
     Berisi task-task Ansible untuk mengeksekusi perintah ke Raspberry Pi.
 
-    ###library/
-    Berisi custom Ansible library/module untuk automation, seperti memodifikasi file
-    settings.yaml di Raspberry Pi.
+    library/
 
-    ###roles/collect_dataset/
-    Role Ansible yang berisi:
+    Berisi custom Ansible library/module untuk automation,
+    misalnya untuk memodifikasi file settings.yaml di Raspberry Pi.
 
-    -tasks/
+    roles/collect_dataset/
 
-    -library/
+    Role Ansible untuk proses pengumpulan dataset, terdiri dari:
 
-    ###playbooks/
-    Berisi playbook untuk mengelompokkan dan menjalankan program automation.
+    tasks/ — task spesifik role
 
-    ###group_vars/
+    library/ — custom module untuk role
+
+    playbooks/
+
+    Berisi playbook Ansible untuk mengelompokkan dan menjalankan automation.
+
+    group_vars/
+
     Berisi konfigurasi global, seperti:
 
-    -path folder di Raspberry Pi
+    Path folder di Raspberry Pi
 
-    -format zip
+    Format zip
 
-    -nama folder
+    Nama folder
 
-    -konfigurasi lainnya
+    Konfigurasi lainnya
 
-    ###inventory/
+    inventory/
+
     Berisi file hosts.ini untuk konfigurasi:
 
-    -hostname Raspberry Pi
+    Hostname Raspberry Pi
 
-    -alamat IP
+    Alamat IP
 
-    -jenis Raspberry Pi
+    Jenis Raspberry Pi
 
-    -pengaturan SSH dan parameter lainnya
+    Pengaturan SSH dan parameter lainnya
+
+## Catatan
+
+   Pastikan setiap Raspberry Pi dapat diakses melalui SSH dan terdaftar dengan benar di file inventory sebelum menjalankan playbook.
