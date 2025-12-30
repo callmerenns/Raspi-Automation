@@ -67,4 +67,45 @@ Pastikan komputer lokal Anda sudah memenuhi persyaratan berikut:
    ```bash
    ansible-playbook -i inventory/hosts.ini playbooks/nama_playbook.yml
 
+## Struktur Folder & Keterangan
+    ###ansible.cfg
+    File konfigurasi utama Ansible.
 
+    ###tasks/
+    Berisi task-task Ansible untuk mengeksekusi perintah ke Raspberry Pi.
+
+    ###library/
+    Berisi custom Ansible library/module untuk automation, seperti memodifikasi file
+    settings.yaml di Raspberry Pi.
+
+    ###roles/collect_dataset/
+    Role Ansible yang berisi:
+
+    -tasks/
+
+    -library/
+
+    ###playbooks/
+    Berisi playbook untuk mengelompokkan dan menjalankan program automation.
+
+    ###group_vars/
+    Berisi konfigurasi global, seperti:
+
+    -path folder di Raspberry Pi
+
+    -format zip
+
+    -nama folder
+
+    -konfigurasi lainnya
+
+    ###inventory/
+    Berisi file hosts.ini untuk konfigurasi:
+
+    -hostname Raspberry Pi
+
+    -alamat IP
+
+    -jenis Raspberry Pi
+
+    -pengaturan SSH dan parameter lainnya
