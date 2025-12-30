@@ -53,7 +53,8 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
 
    ```bash
    ssh-copy-id -i ~/.ssh/id_rsa.pub user-raspi@ip-raspi
-
+   ```
+   
    ip-raspi dapat berupa IP lokal atau IP dari Tailscale.
 
 ---
