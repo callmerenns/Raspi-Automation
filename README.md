@@ -107,7 +107,7 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
 
    #### roles/collect_dataset/
 
-   ** Role Ansible untuk proses pengumpulan dataset, terdiri dari: **
+   **Role Ansible untuk proses pengumpulan dataset, terdiri dari:**
 
    - tasks/ — task spesifik role
 
@@ -119,7 +119,7 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
 
    #### group_vars/
 
-   ** Berisi konfigurasi global, seperti: **
+   **Berisi konfigurasi global, seperti:**
 
    - Path folder di Raspberry Pi
 
@@ -131,7 +131,7 @@ Pastikan komputer lokal Anda memenuhi persyaratan berikut:
 
    #### inventory/
 
-   ** Berisi file hosts.ini untuk konfigurasi: **
+   **Berisi file hosts.ini untuk konfigurasi:**
 
    - Hostname Raspberry Pi
 
